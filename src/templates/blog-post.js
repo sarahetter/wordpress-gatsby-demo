@@ -17,7 +17,7 @@ import Seo from "../components/seo"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
-    data: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
+    data: post.featuredImage?.node?.gatsbyImage,
     alt: post.featuredImage?.node?.alt || ``,
   }
 
@@ -103,16 +103,7 @@ export const pageQuery = graphql`
       date(formatString: "MMMM DD, YYYY")
       featuredImage {
         node {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                quality: 100
-                placeholder: TRACED_SVG
-                layout: FULL_WIDTH
-              )
-            }
-          }
+          gatsbyImage(width: 1000)
         }
       }
     }
